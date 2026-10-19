@@ -1,0 +1,22 @@
+<div class="calendar-header">
+  <button (click)="previousMonth()">‹</button>
+  <h3>
+    {{ monthNames[currentDate.getMonth()] }} {{ currentDate.getFullYear() }}
+  </h3>
+  <button (click)="nextMonth()">›</button>
+</div>
+<div class="calendar-grid">
+  @for (day of daysOfWeek; track day) {
+  <div class="day-of-week">{{ day }}</div>
+  } @for (week of weeks; track $index) { @for (day of week; track day.date) {
+  <div
+    class="day-cell"
+    [class.not-current-month]="!day.isCurrentMonth"
+    [class.completed]="day.isCurrentMonth && isDateInHistory(day.date)"
+    [class.positive]="habitType === 'positive'"
+    [class.negative]="habitType === 'negative'"
+  >
+    <span class="day-number">{{ day.day }}</span>
+  </div>
+  } }
+</div>

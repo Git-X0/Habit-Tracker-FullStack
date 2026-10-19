@@ -1,0 +1,43 @@
+<div class="form-container">
+  <h3>Add a new Habit</h3>
+  <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Habit Name (max 20 chars)</mat-label>
+      <input matInput formControlName="name" />
+      @if (habitForm.get('name')?.hasError('maxlength')) {
+      <mat-error>Name cannot exceed 20 characters.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (max 30 chars)</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      @if (habitForm.get('description')?.hasError('maxlength')) {
+      <mat-error>Description cannot exceed 30 characters.</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="centered-toggle">
+      <mat-button-toggle-group formControlName="type" aria-label="Habit Type">
+        <mat-button-toggle value="positive">Positive</mat-button-toggle>
+        <mat-button-toggle value="negative">Negative</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    @if (validationError || duplicateError) {
+    <p class="error-message">{{ validationError || duplicateError }}</p>
+    }
+
+    <div class="form-actions">
+      <button mat-button type="button" (click)="close()">Cancel</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!habitForm.valid"
+      >
+        Add Habit
+      </button>
+    </div>
+  </form>
+</div>

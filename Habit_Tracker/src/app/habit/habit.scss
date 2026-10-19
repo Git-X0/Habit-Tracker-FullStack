@@ -1,0 +1,106 @@
+@use "../../styles/variables" as *;
+@use "@angular/material" as mat;
+
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+mat-card {
+  @include card-shadow;
+  overflow: hidden;
+
+  &.positive-habit {
+    border-left: 5px solid $positive-color;
+  }
+
+  &.negative-habit {
+    border-left: 5px solid $negative-color;
+  }
+}
+
+mat-card-header {
+  cursor: pointer;
+
+  // Ensure text wraps properly in header elements
+  .mat-card-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    min-width: 0;
+  }
+
+  .mat-card-subtitle {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    min-width: 0;
+  }
+
+  .mat-icon {
+    &.positive {
+      color: $positive-color;
+    }
+    &.negative {
+      color: $negative-color;
+    }
+  }
+
+  .done-button {
+    margin-left: auto; /* Pushes the buttons to the right */
+  }
+
+  .done-today {
+    color: $primary-color;
+  }
+}
+
+mat-card-content {
+  // Ensure description text wraps properly
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+// Utility class for text wrapping
+.wrap-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.details-content {
+  padding: 1rem;
+  @include responsive-breakpoint(mobile) {
+    padding: 0.5rem;
+  }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  @include responsive-breakpoint(mobile) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.calendar-container,
+.graph-container {
+  min-width: 0; // important for charts/svg sizing inside narrow columns
+}
+
+.calendar-container {
+  width: 100%;
+}
+
+.graph-container {
+  width: 100%;
+}
