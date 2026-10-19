@@ -1,4 +1,4 @@
-# Habit_Tracker
+# Habit Tracker
 
 You can visit online version on NOT YET AVAILABLE
 
